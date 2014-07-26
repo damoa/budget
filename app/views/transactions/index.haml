@@ -1,0 +1,22 @@
+%h2='Umsätze'
+%table#transactions
+  %thead
+    %th= 'Buchungstag'
+    %th= 'Wertstellung'
+    %th= 'Umsatzart'
+    %th= 'Buchungsdetails'
+    %th= 'Auftraggeber'
+    %th= 'Empfänger'
+    %th= 'Betrag'
+    %th= 'Saldo'
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.booking_date
+        %td= transaction.value_date
+        %td= transaction.type.gsub('Transactions::','')
+        %td= transaction.details
+        %td= transaction.originator
+        %td= transaction.receiver
+        %td= transaction.amount
+        %td= transaction.balance
