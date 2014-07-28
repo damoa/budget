@@ -55,5 +55,10 @@ Haushalt::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-  resources :transactions, :only => [:index, :show, :edit, :update]
+  root :to => 'transactions#index'
+  resources :transactions, :only => [:index, :show, :edit, :update] do
+    collection do
+      get 'daily_min'
+    end
+  end
 end
