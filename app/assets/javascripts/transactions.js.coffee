@@ -5,8 +5,12 @@ $(document).ready( ->
   $('#transactions').DataTable
     paging: true
 
-  $.getJSON($('transaction-chart').data('url'), (data) ->
-    newData = data
+  $.getJSON($('#transaction-chart').data('url'), (data) ->
+    arr = data
+    for i in [0..data.length-1]
+      data[i][0] = arr[i][0]
+      data[i][1] = parseFloat(arr[i][1])
+    
     # Create the chart
     $('#transaction-chart').highcharts('StockChart', {
       rangeSelector :
@@ -18,7 +22,7 @@ $(document).ready( ->
 
       series : [{
         name : 'AAPL',
-        data : newData,
+        data : data,
         tooltip: {
           valueDecimals: 2
         }

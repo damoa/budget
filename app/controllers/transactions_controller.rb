@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.daily_min
     
     respond_to do |format|
-      format.json {render :json => @transactions.map { |t| [t.balance]}}
+      format.json {render :json => @transactions.map { |t| [t.value_date.to_time.to_i, t.balance]}}
     end
   end
 end
