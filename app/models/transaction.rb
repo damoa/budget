@@ -14,4 +14,12 @@ class Transaction < ActiveRecord::Base
     'Überweisung' => 'Transactions::MoneyTransfer',
     'Gutschrift' => 'Transactions::CreditEntry'
   }
+  
+  def booking_date_in_milliseconds
+    booking_date.to_time.to_i * 1000
+  end
+  
+  def value_date_in_milliseconds
+    value_date.to_time.to_i * 1000
+  end
 end

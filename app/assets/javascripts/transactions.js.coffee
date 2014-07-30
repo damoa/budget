@@ -26,8 +26,11 @@ $(document).ready ->
       subtitle:
         text: 'Täglicher KontoStand'
         x: -20
-        # xAxis:
-        #   categories: dates
+      rangeSelector :
+        selected : 1
+        inputEnabled: $('#transaction-chart').width() > 480
+      xAxis:
+        type: 'datetime'
       yAxis:
         title:
           text: 'EUR'
