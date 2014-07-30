@@ -12,18 +12,22 @@ $(document).ready ->
     balances = []
     for i in [0..data.length-1]
       dates.push(arr[i][0])
-      payments.push(parseFloat(arr[i][1]))
-      balances.push(parseFloat(arr[i][2]))
+      payments[i] = []
+      payments[i].push(parseInt(arr[i][0]))
+      payments[i].push(parseFloat(arr[i][1]))
+      balances[i] = []
+      balances[i].push(parseInt(arr[i][0]))
+      balances[i].push(parseFloat(arr[i][2]))
     
-    $('#transaction-chart').highcharts
+    $('#transaction-chart').highcharts('StockChart',{
       title:
         text: 'Haushalt'
         x: -20 #center
       subtitle:
         text: 'Täglicher KontoStand'
         x: -20
-      xAxis:
-        categories: dates
+        # xAxis:
+        #   categories: dates
       yAxis:
         title:
           text: 'EUR'
@@ -42,3 +46,4 @@ $(document).ready ->
         { name: 'Kontostand', data: balances }
         { name: 'Zahlungseingang', data: payments }
       ]
+    })
