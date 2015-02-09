@@ -59,6 +59,8 @@ Haushalt::Application.routes.draw do
   resources :transactions, :only => [:index, :show, :edit, :update] do
     collection do
       get 'daily_min'
+      get 'monthly'
+      get 'monthly_withdrawal'
     end
   end
 end

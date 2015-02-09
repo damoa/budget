@@ -5,6 +5,10 @@ class Transaction < ActiveRecord::Base
   scope :daily_min, select("value_date AS value_date, sum(amount) AS amount, MIN(balance) AS balance")
     .group("value_date")
     .order("value_date")
+
+  scope :monthly_sum, select("MAX(value_date) AS value_date, sum(amount) AS amount")
+    .group("strftime('%Y-%m', value_date)")
+    .order("strftime('%Y-%m', value_date)")
   
   TYPE_MAPPING = {
     'Lastschrift' => 'Transactions::Charge',

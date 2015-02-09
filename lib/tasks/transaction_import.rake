@@ -18,6 +18,8 @@ namespace :transactions do
         begin
           Transaction.find_or_create_by_booking_date_and_value_date_and_type_and_details_and_receiver_and_amount_and_balance(booking_date: booking_date, value_date: value_date, type: type, details: row[3], originator: row[4], receiver: row[5], amount: amount, balance: balance)
         rescue Exception=>e
+          p row
+          p type
           p e
         end
       end
