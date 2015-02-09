@@ -11,12 +11,16 @@ class Transaction < ActiveRecord::Base
     .order("strftime('%Y-%m', value_date)")
   
   TYPE_MAPPING = {
-    'Lastschrift' => 'Transactions::Charge',
-    'Dauerauftrag' => 'Transactions::AutomaticBillPayment',
-    'Zinsen/Entgelt' => 'Transactions::Interest',
+    'Lastschrift'     => 'Transactions::Charge',
+    'Dauerauftrag'    => 'Transactions::AutomaticBillPayment',
+    'Zinsen/Entgelt'  => 'Transactions::Interest',
     'Kartenverfügung' => 'Transactions::Withdrawal',
-    'Überweisung' => 'Transactions::MoneyTransfer',
-    'Gutschrift' => 'Transactions::CreditEntry'
+    'Überweisung'     => 'Transactions::MoneyTransfer',
+    'Gutschrift'      => 'Transactions::CreditEntry',
+    'Gehalt/Rente'    => 'Transactions::Salary',
+    'Storno'          => 'Transactions::Reversal',
+    'Auszahlung'      => 'Transactions::Payout',
+    'Einzahlung'      => 'Transactions::Deposit'
   }
   
   def booking_date_in_milliseconds
