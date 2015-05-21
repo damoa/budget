@@ -15,3 +15,4 @@
 //= require_tree .
 //= require dataTables/jquery.dataTables
 //= require highstock
+//= require Chart
