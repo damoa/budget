@@ -1,0 +1,4 @@
+= link_to 'Zurück zur Umsatztabelle', root_path
+%canvas#canvas{:height => "450", :width => "1200", data: {url: monthly_transactions_url(format: :json)}}
+
+%canvas#canvas2{:height => "450", :width => "1200", data: {url: monthly_withdrawal_transactions_url(format: :json)}}
