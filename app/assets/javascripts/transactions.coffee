@@ -48,66 +48,95 @@ $(document).ready ->
       ]
     })
 
-    # bar chart
-  $.getJSON $('#container').data('url'), ->
-    $('#container').highcharts({
-        chart: {
-            type: 'bar'
+jQuery ->
+  $.getJSON $('#canvas').data('url'), (data) ->
+    arr = data
+    dates = []
+    payments = []
+    balances = []
+    for i in [0..data.length-1]
+      dates.push(arr[i][0])
+      balances[i] = []
+      balances[i].push(Math.round(arr[i][1]*100)/100)
+    maxPayment = Math.max(balances)
+
+    data = {
+      labels : dates
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : [1]
         },
-        title: {
-            text: 'Eingaben und Ausgaben nach Art'
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : balances
+        }
+      ]
+    }
+
+    myNewChart = new Chart($("#canvas").get(0).getContext("2d")).Line(data)
+
+  $.getJSON $('#canvas2').data('url'), (data) ->
+    arr = data
+    dates = []
+    payments = []
+    balances = []
+    for i in [0..data.length-1]
+      dates.push(arr[i][0])
+      balances[i] = []
+      balances[i].push(-Math.round(arr[i][1]*100)/100)
+    maxPayment = Math.max(balances)
+
+    data = {
+      labels : dates
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : [1]
         },
-        # subtitle: {
-        #     text: 'Source: Wikipedia.org'
-        # },
-        xAxis: {
-            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'], # need months
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Population (millions)', # need amount
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ' €'
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Year 1800', # automatic_bill_payment, charge, credit_entry, deposit, interest, money_transfer, payout, reversal, salary, withdrawal
-            data: [107, 31, 635, 203, 2]
-        }, {
-            name: 'Year 1900',
-            data: [133, 156, 947, 408, 6]
-        }, {
-            name: 'Year 2008',
-            data: [973, 914, 4054, 732, 34]
-        }]
-    });
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : balances
+        }
+      ]
+    }
+
+    myNewChart = new Chart($("#canvas2").get(0).getContext("2d")).Bar(data)
+
+  $.getJSON $('#canvas3').data('url'), (data) ->
+    arr = data
+    dates = []
+    payments = []
+    balances = []
+    for i in [0..data.length-1]
+      dates.push(arr[i][0])
+      balances[i] = []
+      balances[i].push(Math.abs(arr[i][1]))
+    maxPayment = Math.max(balances)
+
+    data = {
+      labels : dates
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : balances
+        }
+      ]
+    }
+
+    myNewChart = new Chart($("#canvas3").get(0).getContext("2d")).Radar(data)
