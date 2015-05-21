@@ -20,3 +20,6 @@
         %td= transaction.receiver
         %td= transaction.amount
         %td= transaction.balance
+= link_to 'Kontostand in Tagen', daily_min_transactions_path
+= link_to 'Kontostand in Monaten', monthly_transactions_path
+= link_to 'Übersicht', overall_transactions_path
