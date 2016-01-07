@@ -1,6 +1,7 @@
 $(document).ready ->
   $('#transactions').DataTable
     paging: true
+    order: [[0, 'desc']]
   
   $.getJSON $('#transaction-chart').data('url'), (data) ->
     arr = data
