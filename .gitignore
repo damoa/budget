@@ -16,3 +16,5 @@
 
 # additionally ignore
 .ruby-version
+
+**/private/
