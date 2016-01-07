@@ -3,6 +3,7 @@
   %thead
     %th= 'Buchungstag'
     %th= 'Wertstellung'
+    %th= 'Kategorie'
     %th= 'Umsatzart'
     %th= 'Buchungsdetails'
     %th= 'Auftraggeber'
@@ -14,6 +15,7 @@
       %tr
         %td= transaction.booking_date
         %td= transaction.value_date
+        %td= transaction.category
         %td= transaction.type.gsub('Transactions::','')
         %td= transaction.details
         %td= transaction.originator
