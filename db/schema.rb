@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140712162137) do
+ActiveRecord::Schema.define(:version => 20160107093012) do
 
   create_table "transactions", :force => true do |t|
     t.date     "booking_date",                                :null => false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20140712162137) do
     t.decimal  "balance",      :precision => 16, :scale => 8
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
+    t.string   "category"
   end
 
   add_index "transactions", ["value_date", "amount", "balance"], :name => "index_transactions_on_value_date_and_amount_and_balance", :unique => true
